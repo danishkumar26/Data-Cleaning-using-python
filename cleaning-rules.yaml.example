@@ -1,0 +1,25 @@
+# Data cleaning rules example
+# Copy to cleaning-rules.yaml and adjust for your dataset.
+
+drop_duplicates: true
+# subset: ["email"]  # uncomment to dedupe on specific columns only
+
+missing_values:
+  age: "strategy=mean"
+  date_of_birth: "strategy=drop"
+  # email: "strategy=constant=unknown@example.com"
+
+date_columns:
+  date_of_birth:
+    input_formats: ["%d-%m-%Y", "%Y-%m-%d", "%m/%d/%Y"]
+    output_format: "%Y-%m-%d"
+
+type_cast:
+  age: int
+  # salary: float
+
+columns:
+  # keep: [name, age, dob, email]
+  # drop: []
+  rename:
+    date_of_birth: dob

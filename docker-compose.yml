@@ -1,0 +1,7 @@
+services:
+  dataclean:
+    build: .
+    volumes:
+      - ./data:/app/data:ro
+      - ./output:/app/output
+    command: clean /app/data/employee_data.txt --rules /app/cleaning-rules.yaml.example --out /app/output/cleaned.csv --report /app/output/report.md

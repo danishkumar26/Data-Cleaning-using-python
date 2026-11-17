@@ -1,0 +1,58 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "dataclean"
+version = "0.1.0"
+description = "Lightweight, config-driven data-cleaning library and CLI for Python."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+    { name = "danishkumar26", email = "danishkumar26@example.com" },
+]
+license = { text = "MIT" }
+keywords = ["data-cleaning", "data-wrangling", "pandas", "cli", "python", "data-quality"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Utilities",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+dependencies = [
+    "typer[all]>=0.12",
+    "rich>=13.0",
+    "pyyaml>=6.0",
+    "python-dateutil>=2.8",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=4.0",
+    "ruff>=0.8",
+    "mypy>=1.8",
+]
+
+[project.scripts]
+dataclean = "dataclean.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/dataclean"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+select = ["E", "F", "I", "B", "C4"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_ignores = true

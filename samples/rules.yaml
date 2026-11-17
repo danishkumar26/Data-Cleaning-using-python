@@ -1,0 +1,19 @@
+# Data-cleaning rules for samples/employee_data.txt
+drop_duplicates: true
+subset: ["email"]
+
+missing_values:
+  age: "strategy=mean"
+  date_of_birth: "strategy=drop"
+
+date_columns:
+  date_of_birth:
+    input_formats: ["%d-%m-%Y", "%Y-%m-%d", "%m/%d/%Y"]
+    output_format: "%Y-%m-%d"
+
+type_cast:
+  age: int
+
+columns:
+  rename:
+    date_of_birth: dob

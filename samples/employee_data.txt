@@ -1,0 +1,20 @@
+name,age,date_of_birth,email
+John Smith,25,12-05-1998,john@example.com
+Jane Doe,30,1992-09-21,jane@example.com
+Alice Johnson,,"1990-07-15",alice@example.com
+Mark Thompson,40,,mark@example.com
+Emily Wilson,28,1985-12-01,emily@example.com
+Michael Brown,,1995-04-10,michael@example.com
+Sarah Anderson,35,1980-10-25,sarah@example.com
+David Miller,42,1978-06-03,david@example.com
+Jessica Lee,27,,jessica@example.com
+Daniel Harris,33,1990-03-18,daniel@example.com
+John Smith,25,12-05-1998,john@example.com
+Jane Doe,30,1992-09-21,jane@example.com
+Alice Johnson,,1990-07-15,alice@example.com
+Emily Wilson,28,1985-12-01,emily@example.com
+Michael Brown,30,1995-04-10,michael@example.com
+Sarah Anderson,35,1980-10-25,sarah@example.com
+David Miller,42,1978-06-03,david@example.com
+Jessica Lee,27,1992-08-15,jessica@example.com
+Daniel Harris,33,1990-03-18,daniel@example.com
