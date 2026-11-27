@@ -1,5 +1,7 @@
 """Tests for dataclean cleaners."""
 
+import pytest
+
 from dataclean.cleaners.columns import column_ops
 from dataclean.cleaners.dates import normalize_dates
 from dataclean.cleaners.dedupe import dedupe
@@ -85,3 +87,18 @@ def test_cleaning_rules_from_dict():
     assert rules.drop_duplicates is True
     assert rules.missing_values["age"].strategy == "mean"
     assert rules.type_cast["age"] == "int"
+
+
+def test_column_ops_rename_rejects_existing_target():
+    # Renaming onto an existing column must fail instead of overwriting data.
+    rows = [{"a": 1, "b": 2}]
+    with pytest.raises(ValueError, match="already exists"):
+        column_ops(rows, rename={"a": "b"})
+    # No data lost and no partial rename applied.
+    assert rows == [{"a": 1, "b": 2}]
+
+
+def test_column_ops_rename_still_works_for_new_target():
+    cleaned, res = column_ops([{"a": 1}], rename={"a": "b"})
+    assert cleaned == [{"b": 1}]
+    assert res.renamed_columns == {"a": "b"}

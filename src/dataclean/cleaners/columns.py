@@ -50,6 +50,17 @@ def column_ops(
 
     # Rename columns
     renamed_columns: dict[str, str] = {}
+    # Fail fast if a rename would overwrite an existing column in any row,
+    # silently destroying that column's data.
+    for old_name, new_name in rename.items():
+        if old_name == new_name:
+            continue
+        for row in cleaned:
+            if old_name in row and new_name in row:
+                raise ValueError(
+                    f"Cannot rename column {old_name!r} to {new_name!r}: "
+                    f"column {new_name!r} already exists"
+                )
     for row in cleaned:
         for old_name, new_name in rename.items():
             if old_name in row:
